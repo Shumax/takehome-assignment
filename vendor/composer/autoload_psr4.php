@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Shumax\\TakehomeEbanxAssignment\\' => array($baseDir . '/src'),
+    'Src\\' => array($baseDir . '/src'),
 );
