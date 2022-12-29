@@ -72,19 +72,22 @@ class EventController
 
   public function handleWithdraw()
   {
-    $origin = [];
+    $accountKey = $this->body['origin'];
+    $response = [];
 
-    if($this->file['destination']['id'] !== $this->body['origin']) {
+    if(!isset($this->file[$accountKey])) {
       header("HTTP/1.1 404 Not Found");
       echo json_encode(0);
     } else {
-      $origin['origin'] = [
-        'id' => $this->body['origin'],
-        'balance' => $this->body['amount']
-      ];
+      
+      $this->file[$accountKey]['destination']['balance'] = $this->file[$accountKey]['destination']['balance'] - $this->body['amount'];
+
+      $response['origin'] = $this->file[$accountKey]['destination'];
+
+      file_put_contents(dirname(__DIR__).'/Data/file.json',json_encode($this->file));
 
       header("HTTP/1.1 201 Created");
-      echo json_encode($origin);
+      echo json_encode($response);
     }
 
 
