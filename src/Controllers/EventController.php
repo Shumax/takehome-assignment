@@ -2,8 +2,6 @@
 
 namespace Src\Controllers;
 
-use Data as Src;
-
 class EventController 
 {
 
@@ -90,12 +88,33 @@ class EventController
       echo json_encode($response);
     }
 
-
   }
 
   public function handleTransfer()
   {
-    echo 'transfer';
+    $accountKey = $this->body['origin'];
+    $response = [];
+
+    if(!isset($this->file[$accountKey])) {
+      header("HTTP/1.1 404 Not Found");
+      echo json_encode(0);
+    } else {
+      
+      $this->file[$accountKey]['destination']['balance'] = $this->file[$accountKey]['destination']['balance'] - $this->body['amount'];
+
+      $response['origin'] = $this->file[$accountKey]['destination'];
+      $response['destination'] = [
+        'id' => $this->body['destination'],
+        'balance' => $this->body['amount']
+      ];
+
+      $this->file[$accountKey]['historyTransfer'] = $response;
+      
+      file_put_contents(dirname(__DIR__).'/Data/file.json',json_encode($this->file));
+
+      header("HTTP/1.1 201 Created");
+      echo json_encode($response);
+    }
   }
 
 }
