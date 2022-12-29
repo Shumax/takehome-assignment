@@ -1,1 +1,1 @@
-{"300":{"destination":{"id":"300","balance":15}},"100":{"destination":{"id":"100","balance":0},"historyTransfer":{"origin":{"id":"100","balance":0},"destination":{"id":"300","balance":30}}}}
+{"100":{"destination":{"id":"100","balance":0},"historyTransfer":{"origin":{"id":"100","balance":0},"destination":{"id":"300","balance":15}}}}

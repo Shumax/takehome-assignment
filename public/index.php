@@ -4,6 +4,7 @@ require '../vendor/autoload.php';
 
 use Src\Controllers\BalanceController;
 use Src\Controllers\EventController;
+use Src\Controllers\ResetController;
 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -29,7 +30,7 @@ switch ($uri[1]) {
 
   case 'reset':
     
-    echo 'reset';
+    new ResetController();
 
     break;
   
