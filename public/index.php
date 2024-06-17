@@ -17,29 +17,20 @@ $uri = explode( '/', $uri );
 
 switch ($uri[1]) {
   case 'balance':
-    
     new BalanceController();
-
     break;
 
   case 'event':
-    
     new EventController();
-
     break;
 
   case 'reset':
-    
     new ResetController();
-
     break;
-  
+
   default:
-    
     header("HTTP/1.1 404 Not Found");
     exit();
-
-    break;
 }
 
 
